@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="/static/style.css" rel="stylesheet" >
+    <title>WeatherMan App</title>
+</head>
+<body>
+    <div class="widget-div" style="display: flex; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+        <div class="widget">
+            
+            <div class="left-panel panel">
+                <div class="date">
+                    <!-- {{data.highest_day}}, {{data.highest_month}} -->
+                </div>
+                <div class="city">
+                    Highest Average
+                </div>
+                <div class="temp">
+                   <img src="https://codefrog.tech/cp/wp/ts.png" alt="" width="60">
+                   {{data.highest_avg}}&deg;
+                </div>
+            </div>
+            <div class="right-panel panel">
+                <img src="https://codefrog.tech/cp/wp/mumbai.png" alt="" width="160">
+            </div>
+        </div>
+       
+        <div class="widget">
+                
+            <div class="left-panel panel">
+                <div class="date">
+                    <!-- {{data.lowest_day}}, {{data.lowest_month}} -->
+                </div>
+                <div class="city">
+                    Lowest Average
+                </div>
+                <div class="temp">
+                    <img src="https://codefrog.tech/cp/wp/ts.png" alt="" width="60">
+                    {{data.lowest_avg}}&deg;
+                </div>
+            </div>
+            <div class="right-panel panel">
+                <img src="https://codefrog.tech/cp/wp/mumbai.png" alt="" width="160">
+            </div>
+        </div>
+        
+        <div class="widget">
+                
+            <div class="left-panel panel">
+                <div class="date">
+                    <!-- {{data.humid_day}}, {{data.humid_month}} -->
+                </div>
+                <div class="city">
+                    Average Humidity
+                </div>
+                <div class="temp">
+                    <img src="https://codefrog.tech/cp/wp/ts.png" alt="" width="60">
+                    {{data.humid_avg}}%
+                </div>
+            </div>
+            <div class="right-panel panel">
+                <img src="https://codefrog.tech/cp/wp/mumbai.png" alt="" width="160">
+            </div>
+    
+            
+    
+        </div>
+    </div>
+   
+
+    
+</body>
+</html>
