@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="/static/style.css" rel="stylesheet" >
+    <title>WeatherMan App</title>
+</head>
+<body>
+    <h1>Charts</h1>
+    <div class="center">
+        <form method="POST">
+            <label style="color: white;" name="year">Enter year: </label>
+            <input placeholder="e.g 2006" name="year" for="year" value="{{year}}" >
+    
+            <label style="color: white;" name="month">Enter month: </label>
+            <input placeholder="e.g Jan, Feb" name="month" for="month" value="{{month}}">
+    
+            <button class="button-9" formaction="{{ url_for("reading_bp.h_chart")}}" type="submit">Horizontal Chart</button>
+            <button class="button-9" formaction="{{ url_for("reading_bp.v_chart")}}" type="submit">Vertical Chart</button>
+        </form>
+    </div>
+    
+    
+
+</body>
+</html>

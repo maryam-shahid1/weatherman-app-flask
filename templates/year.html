@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="/static/style.css" rel="stylesheet" >
+    <title>WeatherMan App</title>
+</head>
+<body>
+    <h1>Enter Year</h1>
+    <div class="center">
+        <form method="POST" action="{{ url_for("reading_bp.year")}}">
+            <input type="number" min="2004" max="2016" id="year" value="{{year}}" placeholder="e.g 2006" name="year" for="year" >
+            <button class="button-9" type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
