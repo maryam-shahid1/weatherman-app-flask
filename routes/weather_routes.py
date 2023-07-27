@@ -9,5 +9,3 @@ reading_bp.route('/month/', methods=['GET', 'POST'])(month)
 reading_bp.route('/chart', methods=['GET'])(chart)
 reading_bp.route('/chart/horizontal_chart', methods=['GET', 'POST'])(h_chart)
 reading_bp.route('/chart/vertical_chart', methods=['GET', 'POST'])(v_chart)
-
-
