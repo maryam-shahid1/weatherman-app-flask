@@ -55,3 +55,4 @@ class ParsingData:
                 list = self.parsing_file_data(file)
                 monthly_readings.append(list)
         return monthly_readings
+    
