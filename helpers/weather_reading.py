@@ -9,4 +9,3 @@ class WeatherReading:
         self.mean_humidity = mean_humidity
 
 
- 
