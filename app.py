@@ -8,10 +8,6 @@ app.register_blueprint(reading_bp, url_prefix='/weather')
 
 @app.route('/')
 def index():
+    '''Renders home page. '''
     return render_template('home.html')
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run()
-
 
