@@ -1,131 +1,97 @@
 import sys
 import os
-from helpers.calculations import *
+from helpers.calculations import ReportCalculations, get_month
+from helpers.weather_reading import WeatherReading
+from helpers.data_parsing import ParsingData
+from helpers.report import Results
 
 
-def months_list():
-    return ['Jan', 'Feb', 'Mar',
-            'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep',
-            'Oct', 'Nov', 'Dec']
+def main():
 
+    arguments_len = len(sys.argv)
+    type_index = 1
 
-class WeatherReading:
+    for i in range(2, arguments_len, 2):
+        report_type = sys.argv[type_index]
 
-    def __init__(self, day, max_temp, mean_temp,
-                 min_temp, mean_humidity):
-        self.day = day
-        self.max_temp = max_temp
-        self.mean_temp = mean_temp
-        self.min_temp = min_temp
-        self.mean_humidity = mean_humidity
+        if (report_type == '-e'):
+            '''Handling request for year's report'''
+            year = sys.argv[i]
+            year_value = int(year)
 
+            if (year_value < 2004 or year_value > 2016):
+                print('Year out of range!')
+                break 
 
-class ParsingData:
+            file_name = f'weatherfiles/Murree_weather_{year}'
 
-    def parsing_data(self, file):
-        file_content = file.readlines()
-        file_size = len(file_content)
-        list = []
+            parse = ParsingData()
+            weather_readings = parse.year_parsing(file_name)
 
-        for i in range(1, file_size):
-            data = file_content[i]
-            reading = data.split(',')
-            day = reading[0]
-            max_temp = mean_temp = min_temp = mean_humidity = ''
-            if reading[1] != '' and reading[1] != ',':
-                max_temp = int(reading[1])
-            if reading[2] != '' and reading[2] != ',':
-                mean_temp = int(reading[2])
-            if reading[3] != '' and reading[3] != ',':
-                min_temp = int(reading[3])
-            if reading[8] != '' and reading[8] != ',':
-                mean_humidity = int(reading[8])
+            calculations = ReportCalculations()
+            highest, lowest, humid = calculations.year_calculations(weather_readings)
 
-            list.append(WeatherReading(day, max_temp, mean_temp,
-                                       min_temp, mean_humidity))
-        return list
-
-    def month_parsing(self, file_name):
-        file = open(file_name, "r")
-        list = self.parsing_data(file)
-        return list
-
-    def year_parsing(self, filename):
-        monthly_readings = []
-        months = months_list()
-        for i in range(12):
-            file_name = filename + '_' + months[i] + '.txt'
-            if os.path.isfile(file_name):
-                file = open(file_name)
-                list = self.parsing_data(file)
-                monthly_readings.append(list)
-        return monthly_readings
-
-
-# def main():
-
-    
-#     arguments_len = len(sys.argv)
-#     type_index = 1
-
-#     for i in range(2, arguments_len, 2):
-#         report_type = sys.argv[type_index]
-
-#         if (report_type == '-e'):
-#             year = sys.argv[i]
-#             file_name = "weatherfiles/Murree_weather_" + year
-
-#             parse = ParsingData()
-#             weather_readings = parse.year_parsing(file_name)
-
-#             calculations = ReportCalculations()
-#             highest, lowest, humid = calculations.year_calculations(weather_readings)
-
-#             results = Results()
-#             results.year_results(highest, lowest, humid)
+            results = Results()
+            results.year_results(highest, lowest, humid)
             
-#             Report.year_report(results)
-#             print('\n')
+            Report.year_report(results)
+            print('\n')
 
-#         elif report_type == '-a':
-#             period = sys.argv[i]
-#             data = period.split('/')
-#             year = data[0]
-#             month = int(data[1])
-#             month_list = months_list()
-#             file_name = ("weatherfiles/Murree_weather_" + year + "_"
-#                          + month_list[month-1] + ".txt")
+        elif report_type == '-a':
+            '''Handling request for month's report'''
+            period = sys.argv[i]
+            data = period.split('/')
+            year = data[0]
+            year_value = int(year)
+            month = int(data[1])
+            
+            if (year_value < 2004 or year_value > 2016):
+                print('Year out of range!')
+                break
 
-#             parse = ParsingData()
-#             weather_readings = parse.month_parsing(file_name)
+            if (month < 1 or month > 12):
+                print('Month out of range!')
+                break
 
-#             highest_avg, lowest_avg, humid_avg = ReportCalculations.month_calculations(weather_readings)
+            month = get_month(month)
 
-#             results = Results()
-#             results.month_results(highest_avg, lowest_avg, humid_avg)
+            file_name = (f'weatherfiles/Murree_weather_{year}_{month}.txt')
 
-#             Report.month_report(results)
-#             print('\n')
+            parse = ParsingData()
+            weather_readings = parse.month_parsing(file_name)
 
-#         elif report_type == '-c':
-#             period = sys.argv[i]
-#             data = period.split('/')
-#             year = data[0]
-#             month = int(data[1])
-#             month_list = months_list()
-#             file_name = ("weatherfiles/Murree_weather_" + year + "_"
-#                          + month_list[month-1] + ".txt")
+            highest_avg, lowest_avg, humid_avg = ReportCalculations.month_calculations(weather_readings)
 
-#             parse = ParsingData()
-#             weather_readings = parse.month_parsing(file_name)
+            results = Results()
+            results.month_results(highest_avg, lowest_avg, humid_avg)
 
-#             Report.month_chart(weather_readings)
-#             print('---- Horizontal Chart ----')
-#             Report.month_chart_horizonral(weather_readings)
+            Report.month_report(results)
+            print('\n')
 
-#         type_index = type_index + 2
+        elif report_type == '-c':
+            '''Handling request for month's charts'''
+            period = sys.argv[i]
+            data = period.split('/')
+            year = data[0]
+            year_value = int(year)
+            month = int(data[1])
 
+            if (year_value < 2004 or year_value > 2016):
+                print('Year out of range!')
+                break
 
-if __name__ == '__main__':
-    main()
+            if (month < 1 or month > 12):
+                print('Month out of range!')
+                break
+
+            month = get_month(month)
+            file_name = (f'weatherfiles/Murree_weather_{year}_{month}.txt')
+
+            parse = ParsingData()
+            weather_readings = parse.month_parsing(file_name)
+
+            Report.month_chart(weather_readings)
+            print('---- Horizontal Chart ----')
+            Report.month_chart_horizonral(weather_readings)
+
+        type_index = type_index + 2

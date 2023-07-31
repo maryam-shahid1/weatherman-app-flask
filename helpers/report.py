@@ -1,81 +1,88 @@
-class bcolors:
+class TerminalColors:
+    ''' Colors class for chart output. '''
     RED = '\033[31m'
     BLUE = '\033[34m'
     WHITE = '\033[37m'
 
 
 class Report:
-
-    def year_report(values):
+    ''' Generates requested reports and shows them on the terminal.'''
+    
+    def year_report(readings):
+        '''Prints year's report on terminal.'''
         print("---- YEAR REPORT ----")
-        print('Highest: ', values.highest, 'C on ',
-              values.highest_day, values.highest_month)
-        print("Lowest: ", values.lowest,  'C on ',
-              values.lowest_day, values.lowest_month)
-        print("Humidity: ", values.humidity, '% on ',
-              values.humid_day, values.humid_month)
+        print(f'Highest: {readings.highest}C on \
+        {readings.highest_day}, {readings.highest_month}')
+        print(f'Lowest: {readings.lowest}C on \
+            {readings.lowest_day}, {readings.lowest_month}')
+        print(f'Humidity: {readings.humidity}% on \
+        {readings.humid_day}, {readings.humid_month}')
 
-    def month_report(values):
+    def month_report(readings):
+        '''Prints montht's report on terminal.'''
         print("----- MONTH REPORT ----")
-        print('Highets Average: ', values.highest_avg, 'C')
-        print('Lowest Average: ', values.lowest_avg, 'C')
-        print('Average Mean Humidity: ', values.humid_avg, '%')
+        print(f'Highets Average: {readings.highest_avg}C')
+        print(f'Lowest Average:  {readings.lowest_avg}C')
+        print(f'Average Mean Humidity: {readings.humid_avg} %')
 
     def month_chart(weather_readings):
+        '''Prints line by line chart on terminal.'''
 
-        for i in range(len(weather_readings)):
-            date = (weather_readings[i].day).split('-')
+        for weather_reading in weather_readings:
+            date = (weather_reading.day).split('-')
             day = date[2]
-            max_temp = weather_readings[i].max_temp
+            max_temp = weather_reading.max_temp
 
             if max_temp != '':
-                print(bcolors.WHITE, "Day:", day, end="")
+                print(TerminalColors.WHITE, "Day:", day, end="")
                 for j in range(max_temp):
-                    print(bcolors.RED + '+' + bcolors.RED, end="")
-                print(bcolors.WHITE, "Temp:", max_temp, 'C')
+                    print(TerminalColors.RED + '+' + TerminalColors.RED, end="")
+                print(TerminalColors.WHITE, "Temp:", max_temp, 'C')
 
-            min_temp = weather_readings[i].min_temp
+            min_temp = weather_reading.min_temp
 
-            if min_temp != '':
-                print(bcolors.WHITE, "Day:", day, end="")
+            if min_temp:
+                print(TerminalColors.WHITE, "Day:", day, end="")
                 for j in range(min_temp):
-                    print(bcolors.BLUE + '+' + bcolors.BLUE, end="")
-                print(bcolors.WHITE, " Temp:", min_temp, 'C', '\n')
+                    print(TerminalColors.BLUE + '+' + TerminalColors.BLUE, end="")
+                print(TerminalColors.WHITE, " Temp:", min_temp, 'C', '\n')
 
     def month_chart_horizonral(weather_readings):
+        '''Prints horizontal chart on terminal.'''
 
-        for i in range(len(weather_readings)):
-            date = (weather_readings[i].day).split('-')
+        for weather_reading in weather_readings:
+            date = (weather_reading.day).split('-')
             day = date[2]
-            min_temp = weather_readings[i].min_temp
+            min_temp = weather_reading.min_temp
 
             if min_temp != '':
-                print(bcolors.WHITE, "Day:", day, " ", end="")
+                print(TerminalColors.WHITE, "Day:", day, " ", end="")
                 for j in range(min_temp):
-                    print(bcolors.BLUE + '+' + bcolors.BLUE, end="")
+                    print(TerminalColors.BLUE + '+' + TerminalColors.BLUE, end="")
 
-            max_temp = weather_readings[i].max_temp
+            max_temp = weather_reading.max_temp
 
             if max_temp != '':
                 for j in range(max_temp):
-                    print(bcolors.RED + '+' + bcolors.RED, end="")
-                print(bcolors.WHITE, " ", min_temp, 'C -', max_temp, 'C')
+                    print(TerminalColors.RED + '+' + TerminalColors.RED, end="")
+                print(TerminalColors.WHITE, " ", min_temp, 'C -', max_temp, 'C')
 
 
 class Results:
+    '''Data structure to hold result values.'''
 
     def year_results(self, highest, lowest, humid):
-        self.highest_day = highest[0]
-        self.highest_month = highest[1]
-        self.highest = highest[2]
+        self.highest_day = highest["day"]
+        self.highest_month = highest["month"]
+        self.highest = highest["temp"]
 
-        self.lowest_day = lowest[0]
-        self.lowest_month = lowest[1]
-        self.lowest = lowest[2]
+        self.lowest_day = lowest["day"]
+        self.lowest_month = lowest["month"]
+        self.lowest = lowest["temp"]
 
-        self.humid_day = humid[0]
-        self.humid_month = humid[1]
-        self.humidity = humid[2]
+        self.humid_day = humid["day"]
+        self.humid_month = humid["month"]
+        self.humidity = humid["temp"]
 
     def month_results(self, highest_avg, lowest_avg, humid_avg):
         self.highest_avg = highest_avg
