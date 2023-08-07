@@ -10,12 +10,11 @@
 <body>
     <h1>Sign Up</h1>
     <div class="center">
-        <form method="post" action="{{ url_for("reading_bp.signup")}}"> 
-            <input type="text" name="username" value="{{username}}" placeholder="Enter username">
-            <input type="password" name="password" value="{{password}}" placeholder="Enter password">
+        <form method="post" action="{{ url_for("reading_blueprint.signup")}}"> 
+            <input type="text" name="username" value="{{username}}" placeholder="Enter username" required>
+            <input type="password" name="password" value="{{password}}" placeholder="Enter password" required>
             <button onclick="location.href = '/weather/login/'" class="button-9" type="submit">Submit</button>
         </form>
-
     </div>   
 </body>
 </html>

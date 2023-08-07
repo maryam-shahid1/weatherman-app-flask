@@ -8,33 +8,21 @@
     <title>WeatherMan App</title>
 </head>
 <body>
-    <h2 style="color: white; text-align: center; margin: 50px"> Horizontal Chart</h2>
+    <h2> Horizontal Chart</h2>
     {% if data %}
-        {% set size = data|length %}
-        {% for i in range(size) %}
-            {% set date = (data[i].day).split('-') %}
-            {% set day = date[2] %}
-            {% set max_temp = data[i].max_temp %}
-            <div class="bg" style="display: flex; align-items: center; margin-left: 8px;">
-                {% if max_temp != '' %}
-                    <p  >Day: {{day}} </p>
-                    {% for j in range(max_temp) %}
-                        <li style="color: red; display: inline;">+</li>
-                    {% endfor %}
-                {% endif %}
-
-                {% set min_temp = data[i].min_temp %}
-                {% if min_temp != '' %}
-                    {% for j in range(min_temp) %}
-                        <li style="color: blue; display: inline;">	
-                            +</li>
-                    {% endfor %}
-                    <p> {{min_temp}}&deg;C-{{max_temp}}&deg;C</p>
-                {% endif %}
+        {% for day in data %}
+            <div class="bg">
+                <p >Day: {{ day['date'] }} </p>
+                {% for count in range(day['max_temp']) %}
+                    <li class="max_temp">+</li>
+                {% endfor %}
+                {% for count in range(day['min_temp']) %}
+                    <li class="min_temp">+</li>
+                {% endfor %}
+                <p> {{ day['min_temp'] }}&deg;C-{{day['max_temp']}}&deg;C</p>
             </div>
             <br>
         {% endfor %}
     {% endif %}
 </body>
 </html>
-

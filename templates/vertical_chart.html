@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="/static/style.css" rel="stylesheet" >
+    <title>WeatherMan App</title>
+</head>
+<body>
+    <h2> Vertical Chart</h2>
+    <div>
+        {% if data %}
+        {% for day in data %}
+            {% set max_temp = day['max_temp'] %}
+            <div class="bg">
+                    <p>Day: {{ day['date'] }} </p>
+                    {% for count in range(max_temp) %}
+                        <li class="max_temp">+</li>
+                    {% endfor %}
+                    <p>{{ max_temp }}&deg;C</p>
+            </div>
+            <div class="bg">  
+                {% set min_temp = day['min_temp'] %}
+                    <p>Day: {{ day['date']}} </p>
+                    {% for count in range(min_temp) %}
+                        <li class="min_temp">+</li>
+                    {% endfor %}
+                    <p> {{ min_temp }}&deg;C</p>
+            </div>
+            <br>
+        {% endfor %}
+    {% endif %}
+    </div>
+    
+</body>
+</html>
+

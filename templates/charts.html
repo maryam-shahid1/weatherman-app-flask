@@ -11,6 +11,7 @@
     <h1>Charts</h1>
     <div class="center">
         <form method="POST">
+<<<<<<< Updated upstream
             <label style="color: white;" name="year">Enter year: </label>
             <input placeholder="e.g 2006" name="year" for="year" value="{{year}}" >
     
@@ -26,3 +27,17 @@
 
 </body>
 </html>
+=======
+            <label name="year">Enter year: </label>
+            <input placeholder="e.g 2006" name="year" for="year" value="{{year}}" >
+    
+            <label name="month">Enter month: </label>
+            <input placeholder="e.g Jan, Feb" name="month" for="month" value="{{month}}">
+    
+            <button class="button-9" formaction="{{ url_for("reading_blueprint.horizontal_chart")}}" type="submit">Horizontal Chart</button>
+            <button class="button-9" formaction="{{ url_for("reading_blueprint.vertical_chart")}}" type="submit">Vertical Chart</button>
+        </form>
+    </div>
+</body>
+</html>
+>>>>>>> Stashed changes
