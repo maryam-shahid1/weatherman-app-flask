@@ -7,5 +7,3 @@ class WeatherReading:
         self.mean_temp = mean_temp
         self.min_temp = min_temp
         self.mean_humidity = mean_humidity
-
- 
