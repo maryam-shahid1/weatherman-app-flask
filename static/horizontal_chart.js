@@ -18,5 +18,5 @@ canvasList.forEach(function(canvas) {
 
     ctx.fillStyle = 'black';
     ctx.font = '14px Arial';
-    ctx.fillText('Hellllooooo', chartWidth + 10, chartHeight / 2 + 7);
+    ctx.fillText(label, chartWidth + 10, chartHeight / 2 + 7);
 });
