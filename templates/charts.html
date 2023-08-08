@@ -11,28 +11,25 @@
     <h1>Charts</h1>
     <div class="center">
         <form method="POST">
-<<<<<<< Updated upstream
-            <label style="color: white;" name="year">Enter year: </label>
-            <input placeholder="e.g 2006" name="year" for="year" value="{{year}}" >
-    
-            <label style="color: white;" name="month">Enter month: </label>
-            <input placeholder="e.g Jan, Feb" name="month" for="month" value="{{month}}">
-    
-            <button class="button-9" formaction="{{ url_for("reading_bp.h_chart")}}" type="submit">Horizontal Chart</button>
-            <button class="button-9" formaction="{{ url_for("reading_bp.v_chart")}}" type="submit">Vertical Chart</button>
-        </form>
-    </div>
-    
-    
-
-</body>
-</html>
-=======
             <label name="year">Enter year: </label>
             <input placeholder="e.g 2006" name="year" for="year" value="{{year}}" >
     
             <label name="month">Enter month: </label>
-            <input placeholder="e.g Jan, Feb" name="month" for="month" value="{{month}}">
+            <select name="month" id="month" value="{{month}}">
+                <option>--------</option>
+                <option value="Jan">January</option>
+                <option value="Feb">Feburary</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+              </select>
     
             <button class="button-9" formaction="{{ url_for("reading_blueprint.horizontal_chart")}}" type="submit">Horizontal Chart</button>
             <button class="button-9" formaction="{{ url_for("reading_blueprint.vertical_chart")}}" type="submit">Vertical Chart</button>
@@ -40,4 +37,4 @@
     </div>
 </body>
 </html>
->>>>>>> Stashed changes
+
