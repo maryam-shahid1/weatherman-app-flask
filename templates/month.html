@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="/static/style.css" rel="stylesheet" >
+    <title>WeatherMan App</title>
+</head>
+<body>
+    <h1>Month Report</h1>
+    <div class="center">
+        <form method="POST" action="{{ url_for("reading_blueprint.month")}}">
+            <label name="year">Enter year: </label>
+            <input type="number" min="2004" max="2016" placeholder="e.g 2006" name="year" for="year" value="{{year}}">
+            <label name="month">Enter month: </label>
+            <select name="month" id="month" value="{{month}}">
+                <option>--------</option>
+                <option value="Jan">January</option>
+                <option value="Feb">Feburary</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+              </select>
+            <button class="button-9" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

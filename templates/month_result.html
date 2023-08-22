@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="/static/style.css" rel="stylesheet" >
+    <title>WeatherMan App</title>
+</head>
+<body>
+    <div class="widget-div">
+        <div class="widget">
+            
+            <div class="left-panel panel">
+                <div class="date">
+                </div>
+                <div class="city">
+                    Highest Average
+                </div>
+                <div class="temp">
+                   {{data.highest_avg}}&deg;
+                </div>
+            </div>
+            <div class="right-panel panel">
+            </div>
+        </div>
+       
+        <div class="widget">
+                
+            <div class="left-panel panel">
+                <div class="date">
+                </div>
+                <div class="city">
+                    Lowest Average
+                </div>
+                <div class="temp">
+                    {{data.lowest_avg}}&deg;
+                </div>
+            </div>
+            <div class="right-panel panel">
+            </div>
+        </div>
+        
+        <div class="widget">
+                
+            <div class="left-panel panel">
+                <div class="date">
+                </div>
+                <div class="city">
+                    Average Humidity
+                </div>
+                <div class="temp">
+                    {{data.humid_avg}}%
+                </div>
+            </div>
+            <div class="right-panel panel">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="/static/style.css" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>WeatherMan App</title>
+</head>
+<body>
+    <h2> Horizontal Chart</h2>
+        {% if data %}
+            {% for day in data %}
+            <div class="outer-div-horizontal">
+                <div class="horizontal-chart-container">
+                    <p class="day-label"> Day {{day['date']}}</p>
+                    <canvas class="bar-chart" width="300" height="30" max_temp="{{ day['max_temp'] }}" min_temp="{{day['min_temp']}}" day="{{ day['date'] }}"></canvas>
+                    <p class="max_temp" > {{day['max_temp']}}&deg;C<p>
+                    <p class="dash">-</p>
+                    <p class="min_temp">{{day['min_temp']}}&deg;C</p>
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="{{ url_for('static', filename='horizontal_chart.js')}}"></script>
+        {% endif %}
+</body>
+</html>

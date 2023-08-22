@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="/static/style.css" rel="stylesheet" >
+    <title>WeatherMan App</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <div class="center">
+        <form method="post">
+            <input type="text" name="username" value="{{username}}" placeholder="Enter username" action="{{ url_for("reading_blueprint.login")}}" required>
+            <input type="password" name="password" value="{{password}}" placeholder="Enter password" required>
+            <button class="button-9" type="submit">Submit</button>
+            <a class="signup_link" href='/weather/signup'>New to Weatherman? Sign Up.</a>
+        </form>
+
+    </div>   
+</body>
+</html>
